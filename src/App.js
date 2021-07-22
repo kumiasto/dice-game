@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import usePrevious from "./components/hooks/usePrevious";
+import usePrevious from "./hooks/usePrevious";
 import Dice from "./components/Dice";
 import GameInfo from "./components/game-details/GameInfo";
 import EndGame from "./components/modals/EndGame";
