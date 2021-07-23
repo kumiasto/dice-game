@@ -7,10 +7,11 @@ import ResumeGame from "./components/modals/ResumeGame";
 import { Main } from "./styled/App";
 
 function App() {
+  const dataStorage = JSON.parse(localStorage.getItem("data")) ?? 0;
   const [diceValue, setDiceValue] = useState();
   const [history, setHistory] = useState([]);
-  const [points, setPoints] = useState(+localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0 );
-  const [round, setRound] = useState(+localStorage.getItem("rounds") ? parseInt(localStorage.getItem("rounds")) : 1 );
+  const [points, setPoints] = useState( dataStorage ? dataStorage[0] : 0 );
+  const [round, setRound] = useState( dataStorage ? dataStorage[1] : 1 );
   const API_URL = "http://roll.diceapi.com/json/d6";
   const prevDiceValue = usePrevious(diceValue);
 
@@ -26,8 +27,8 @@ function App() {
   }, [round]);
 
   function saveGame() {
-    localStorage.setItem("points", points);
-    localStorage.setItem("rounds", round);
+    const data = [points, round]
+    localStorage.setItem("data", JSON.stringify(data));
   }
 
   return (
